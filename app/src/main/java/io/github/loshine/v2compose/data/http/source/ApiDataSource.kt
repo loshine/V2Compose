@@ -8,7 +8,7 @@ import io.ktor.client.*
 import io.ktor.client.request.*
 import javax.inject.Inject
 
-class HttpDataSource @Inject constructor(private val client: HttpClient) {
+class ApiDataSource @Inject constructor(private val client: HttpClient) {
 
     suspend fun getAllNodes(): List<Node> = client.get(Constant.API.NODES)
 

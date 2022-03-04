@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">V2Compose</string>
+    <string name="nav_hot">Hot</string>
+    <string name="nav_all">All</string>
+    <string name="nav_nodes">Nodes</string>
+    <string name="nav_settings">Settings</string>
 </resources>

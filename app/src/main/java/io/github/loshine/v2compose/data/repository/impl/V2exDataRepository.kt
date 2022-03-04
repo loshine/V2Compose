@@ -1,31 +1,39 @@
 package io.github.loshine.v2compose.data.repository.impl
 
+import io.github.loshine.v2compose.data.bean.HtmlTopic
 import io.github.loshine.v2compose.data.bean.Node
 import io.github.loshine.v2compose.data.bean.Reply
 import io.github.loshine.v2compose.data.bean.Topic
-import io.github.loshine.v2compose.data.http.source.HttpDataSource
+import io.github.loshine.v2compose.data.http.source.ApiDataSource
+import io.github.loshine.v2compose.data.http.source.HtmlDataSource
 import io.github.loshine.v2compose.data.repository.V2exRepository
 import javax.inject.Inject
 
 class V2exDataRepository @Inject
-constructor(private val httpDataSource: HttpDataSource) : V2exRepository {
+constructor(
+    private val apiDataSource: ApiDataSource,
+    private val htmlDataSource: HtmlDataSource
+) : V2exRepository {
 
-    override suspend fun getAllNodes(): List<Node> = httpDataSource.getAllNodes()
+    override suspend fun getAllNodes(): List<Node> = apiDataSource.getAllNodes()
 
-    override suspend fun getNodeInfo(name: String): Node = httpDataSource.getNodeInfo(name)
+    override suspend fun getNodeInfo(name: String): Node = apiDataSource.getNodeInfo(name)
 
-    override suspend fun getHotTopics(): List<Topic> = httpDataSource.getHotTopics()
+    override suspend fun getTopicsByTab(tabName: String): List<HtmlTopic> =
+        htmlDataSource.getTabTopics()
 
-    override suspend fun getLatestTopics(): List<Topic> = httpDataSource.getLatestTopics()
+    override suspend fun getHotTopics(): List<Topic> = apiDataSource.getHotTopics()
+
+    override suspend fun getLatestTopics(): List<Topic> = apiDataSource.getLatestTopics()
 
     override suspend fun getNodeTopics(nodeName: String): List<Topic> =
-        httpDataSource.getNodeTopics(nodeName)
+        apiDataSource.getNodeTopics(nodeName)
 
     override suspend fun getUserTopics(username: String): List<Topic> =
-        httpDataSource.getUserTopics(username)
+        apiDataSource.getUserTopics(username)
 
-    override suspend fun getTopicInfo(id: Long): Topic = httpDataSource.getTopicInfo(id)
+    override suspend fun getTopicInfo(id: Long): Topic = apiDataSource.getTopicInfo(id)
 
     override suspend fun getTopicReplies(topicId: Int): List<Reply> =
-        httpDataSource.getTopicReplies(topicId)
+        apiDataSource.getTopicReplies(topicId)
 }
