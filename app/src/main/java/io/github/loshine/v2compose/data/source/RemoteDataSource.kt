@@ -13,4 +13,8 @@ class RemoteDataSource @Inject constructor(private val client: HttpClient) {
     suspend fun getTabTopics(tab: String): List<TopicItem> = withContext(Dispatchers.IO) {
         client.get(Constant.Api.tabTopics(tab))
     }
+
+    suspend fun getTopic(topicId: Long): Map<String, Any> = withContext(Dispatchers.IO) {
+        client.get(Constant.Api.topic(topicId))
+    }
 }

@@ -2,6 +2,7 @@ package io.github.loshine.v2compose.data.http.interceptor
 
 import io.github.loshine.v2compose.data.http.parser.Parser
 import io.github.loshine.v2compose.data.http.parser.impl.TabTopicsParser
+import io.github.loshine.v2compose.data.http.parser.impl.TopicParser
 import okhttp3.Interceptor
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.Response
@@ -11,8 +12,9 @@ import javax.inject.Inject
 class ParserInterceptor @Inject constructor() : Interceptor {
 
     companion object {
-        val REGISTERED_PARSER = listOf<Parser>(
-            TabTopicsParser()
+        val REGISTERED_PARSER = listOf(
+            TabTopicsParser(),
+            TopicParser()
         )
     }
 
@@ -38,7 +40,7 @@ class ParserInterceptor @Inject constructor() : Interceptor {
             } catch (e: Exception) {
                 e.printStackTrace()
                 val responseBody =
-                    "{message:\"数据解析错误\"}".toResponseBody("application/json;charset=UTF-8".toMediaType())
+                    "{\"message\":\"数据解析错误\"}".toResponseBody("application/json;charset=UTF-8".toMediaType())
                 response.newBuilder()
                     .code(500)
                     .header("content-type", "application/json;charset=UTF-8")

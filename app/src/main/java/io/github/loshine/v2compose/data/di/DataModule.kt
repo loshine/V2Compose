@@ -31,9 +31,9 @@ object DataModule {
         }
         engine {
             this.config {
-//                addInterceptor(HttpLoggingInterceptor().apply {
-//                    setLevel(HttpLoggingInterceptor.Level.BODY)
-//                })
+                addInterceptor(HttpLoggingInterceptor().apply {
+                    setLevel(HttpLoggingInterceptor.Level.BODY)
+                })
                 addInterceptor(parserInterceptor)
             }
         }

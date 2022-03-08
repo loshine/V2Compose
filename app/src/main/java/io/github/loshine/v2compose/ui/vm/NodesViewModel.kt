@@ -23,7 +23,7 @@ class NodesViewModel
         viewModelScope.launch {
             _refreshing.emit(true)
             runCatching {
-//                v2exRepository.getAllNodes()
+                v2exRepository.getTopic(838756)
             }.onSuccess {
 //                _list.emit(it)
             }

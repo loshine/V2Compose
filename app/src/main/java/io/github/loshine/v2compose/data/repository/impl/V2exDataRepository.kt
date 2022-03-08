@@ -8,6 +8,8 @@ import javax.inject.Inject
 class V2exDataRepository @Inject constructor(
     private val remote: RemoteDataSource
 ) : V2exRepository {
+
     override suspend fun getTabTopics(tab: String): List<TopicItem> = remote.getTabTopics(tab)
 
+    override suspend fun getTopic(topicId: Long): Map<String, Any> = remote.getTopic(topicId)
 }

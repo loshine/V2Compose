@@ -29,7 +29,7 @@ fun TopicCard(
     author: String,
     node: Pair<String, String>,
     replies: String,
-    lastModified: String,
+    latestReplyTime: String,
     pinned: Boolean
 ) {
     Card(
@@ -95,7 +95,7 @@ fun TopicCard(
                     modifier = Modifier
                         .weight(1f)
                         .padding(start = 12.dp),
-                    text = lastModified,
+                    text = latestReplyTime,
                     style = MaterialTheme.typography.labelSmall,
                     textAlign = TextAlign.End,
                 )
@@ -113,7 +113,7 @@ fun PreviewTopicCard() {
         author = "作者",
         node = "all" to "全部",
         replies = "212",
-        lastModified = "刚刚",
+        latestReplyTime = "刚刚",
         pinned = true
     )
 }
