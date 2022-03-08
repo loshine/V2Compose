@@ -4,6 +4,7 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import io.github.loshine.v2compose.data.http.interceptor.ParserInterceptor
 import io.ktor.client.*
 import io.ktor.client.engine.okhttp.*
 import io.ktor.client.features.json.*
@@ -23,15 +24,17 @@ object DataModule {
     @Provides
     fun httpClient(
         serializer: JsonSerializer,
+        parserInterceptor: ParserInterceptor
     ) = HttpClient(OkHttp) {
         install(JsonFeature) {
             this.serializer = serializer
         }
         engine {
             this.config {
-                addInterceptor(HttpLoggingInterceptor().apply {
-                    setLevel(HttpLoggingInterceptor.Level.BODY)
-                })
+//                addInterceptor(HttpLoggingInterceptor().apply {
+//                    setLevel(HttpLoggingInterceptor.Level.BODY)
+//                })
+                addInterceptor(parserInterceptor)
             }
         }
     }

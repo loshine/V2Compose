@@ -1,5 +1,6 @@
 package io.github.loshine.v2compose.ui.page.home
 
+import android.text.format.DateUtils
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.runtime.Composable
@@ -34,10 +35,12 @@ fun TabsScreen() {
                 with(list[index]) {
                     TopicCard(
                         title = title,
-                        avatar = avatar,
-                        author = author,
-                        node = node,
-                        replies = replies
+                        avatar = userAvatar,
+                        author = userName,
+                        node = Pair(nodeName, nodeTitle),
+                        replies = "$replies",
+                        lastModified = "${DateUtils.getRelativeTimeSpanString(latestReplyTime)}",
+                        pinned = pinned
                     )
                 }
             }
