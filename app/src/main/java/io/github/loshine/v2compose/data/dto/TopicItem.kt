@@ -11,7 +11,7 @@ data class TopicItem(
     val author: String,
     val avatar: String,
     val latestReplyTime: Long,
-    val replies: Long,
+    val repliesCount: Long,
     // 是否置顶
     val pinned: Boolean
 ) {

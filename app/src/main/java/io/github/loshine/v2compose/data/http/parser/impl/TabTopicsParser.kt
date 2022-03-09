@@ -33,7 +33,7 @@ class TabTopicsParser : Parser {
                         val latestReplyTime = topicInfoElement.findFirst("span")
                             .attribute("title")
                             .parseToEpochMilli()
-                        val replies = "table > tbody > tr > td:nth-child(4)" {
+                        val repliesCount = "table > tbody > tr > td:nth-child(4)" {
                             findFirst {
                                 children.firstOrNull { it.hasClass("count_livid") }?.text
                                     ?: "0"
@@ -48,7 +48,7 @@ class TabTopicsParser : Parser {
                             author = author,
                             avatar = avatar,
                             latestReplyTime = latestReplyTime,
-                            replies = replies,
+                            repliesCount = repliesCount,
                             pinned = pinned
                         )
                     }

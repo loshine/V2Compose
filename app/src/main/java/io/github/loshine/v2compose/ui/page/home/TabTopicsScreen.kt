@@ -38,7 +38,7 @@ fun TabTopicsScreen(tab: TopicTab) {
                         avatar = avatar,
                         author = author,
                         node = Pair(nodeCode, nodeName),
-                        replies = "$replies",
+                        replies = "$repliesCount",
                         latestReplyTime = "${DateUtils.getRelativeTimeSpanString(latestReplyTime)}",
                         pinned = pinned
                     )
